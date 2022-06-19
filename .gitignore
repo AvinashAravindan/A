@@ -1,52 +1,37 @@
-# Prerequisites
-*.d
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+int main(int argc, char *argv[])
+{
+  float valueOne;
+  float valueTwo;
+  char operator;
+  float answer;
 
-# Object files
-*.o
-*.ko
-*.obj
-*.elf
+  printf("Enter calculation:\n\n");
+  scanf("%f %c %f", &valueOne, &operator, & valueTwo);
 
-# Linker output
-*.ilk
-*.map
-*.exp
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
-
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
-
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
-
-# Debug files
-*.dSYM/
-*.su
-*.idb
-*.pdb
-
-# Kernel Module Compile Results
-*.mod*
-*.cmd
-.tmp_versions/
-modules.order
-Module.symvers
-Mkfile.old
-dkms.conf
+  switch(operator)
+    {
+    case '/': answer = valueOne/valueTwo;
+      break;
+    case '*': answer = valueOne*valueTwo;
+      break;
+    case '+': answer = valueOne+valueTwo;
+      break;
+    case '-': answer = valueOne-valueTwo;
+      break;
+    case '^': answer = pow(valueOne,valueTwo);
+      break;
+    case ' ': answer = sqrt(valueTwo);
+      break;
+    default: goto fail;
+    }
+  printf("%.9g%c%.9g =  %.6g\n\n",valueOne,operator, valueTwo, answer);
+  goto exit;
+ fail:
+  printf("Fail.\n");
+ exit:
+  return 0;
+}
